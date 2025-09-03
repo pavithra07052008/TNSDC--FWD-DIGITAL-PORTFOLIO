@@ -1,0 +1,240 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Interactive Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav>
+    <div>
+      <a href="#about">About</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="toggleTheme">🌙</button>
+  </nav>
+
+  <header>
+    <h1 id="typing"></h1>
+    <p>Web Developer • Designer • Creator</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate developer who loves building interactive, creative, and user-friendly digital experiences.
+    </p>
+  </section>
+
+  <section id="portfolio">
+    <h2>My Work</h2>
+    <div class="portfolio">
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://picsum.photos/400/250?random=1" alt="Project 1">
+          </div>
+          <div class="card-back">
+            <p>Project One: Responsive website.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://picsum.photos/400/250?random=2" alt="Project 2">
+          </div>
+          <div class="card-back">
+            <p>Project Two: Interactive portfolio.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://picsum.photos/400/250?random=3" alt="Project 3">
+          </div>
+          <div class="card-back">
+            <p>Project Three: Creative JS app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+    <p id="formMessage" class="status-message"></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Alex | Built with ❤️ using HTML, CSS & JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+---
+
+style.css
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+body.dark nav { background: rgba(20,20,20,0.9); }
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+}
+nav button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #2575fc;
+  color: white;
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+}
+header h1 { font-size: 3rem; }
+header p { font-size: 1.3rem; margin-top: 0.5rem; }
+
+section {
+  padding: 5rem 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #2575fc;
+}
+
+/* Portfolio */
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.card.flipped .card-inner { transform: rotateY(180deg); }
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-back {
+  background: #2575fc;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  transform: rotateY(180deg);
+}
+
+/* Contact Form */
+form {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+input, textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+}
+button.submit-btn {
+  background: #2575fc;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button.submit-btn:hover {
+  background: #1b5dd9;
+}
+
+.status-message {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #2575fc;
+  color: white;
+}index
